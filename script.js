@@ -6,20 +6,24 @@ let userChoice = prompt(`Choose any one of "rock", "paper" and "scissors" : `);
 function getHumanChoice() {
     // let userChoice = prompt(`Choose any one of "rock", "paper" and "scissors" : `);
     // console.log(userChoice.toLowerCase());
-    return userChoice.toLowerCase();
+    let user = userChoice.toLowerCase();
+    // console.log(`User's input - ${user}`);
+    return(user);
     
 }
 
-getHumanChoice();
+// getHumanChoice();
 
 
 
 let choices = ["rock", "paper", "scissors"]; /*Since I have a bit knowledge about arrays, I'm using it for my convenience */
 function getComputerChoice() {
-    return(choices[Math.floor(Math.random() * 3)]);
+    let random = choices[Math.floor(Math.random() * 3)];
+    // console.log(`Computer's input - ${random}`);
+    return(random);
 }
 
-getComputerChoice();
+// getComputerChoice();
 
 
 
@@ -31,25 +35,48 @@ let computerScore = 0;
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === "rock" && computerChoice === "scissors") {
         console.log("You win! Rock beats Scissors");
-        humanScore = humanScore + 1;
+        humanScore++;
+        console.log(`User score - ${humanScore}, Computer score - ${computerScore}`);
+
+
     }else if (humanChoice === "scissors" && computerChoice === "paper") {      /*This looks so messy lmao, would love to know how others did this part */
-        console.log("You win! Scissors beats Paper");
-        humanScore = humanScore + 1;
+        console.log("You win! Scissors beat Paper");
+        humanScore++;
+        console.log(`User score - ${humanScore}, Computer score - ${computerScore}`);
+
+
     }else if (humanChoice === "paper" && computerChoice === "rock") {
         console.log("You win! Paper beats Rock");
-        humanScore = humanScore + 1;
+        humanScore++;
+        console.log(`User score - ${humanScore}, Computer score - ${computerScore}`);
+
+
     }else if (humanChoice === "scissors" && computerChoice === "rock") {
         console.log("You lose! Rock beats Scissors");
-        computerScore = computerScore + 1;
+        computerScore++;
+        console.log(`User score - ${humanScore}, Computer score - ${computerScore}`);
+
+
     }else if (humanChoice === "paper" && computerChoice === "scissors") {
-        console.log("You lose! Scissors beats Paper");
-        computerScore = computerScore + 1;
+        console.log("You lose! Scissors beat Paper");
+        computerScore++;
+        console.log(`User score - ${humanScore}, Computer score - ${computerScore}`);
+
+
     }else if (humanChoice === "rock" && computerChoice === "paper") {
         console.log("You lose! Paper beats Rock");
-        computerScore = computerScore + 1;
+        computerScore++;
+        console.log(`User score - ${humanScore}, Computer score - ${computerScore}`);
+
+
     }else if (humanChoice === computerChoice) {
         console.log("Draw! No points");
-    }else console.log("No points");
+
+        
+    }else {
+        console.log("No points");
+    }
+
 }
 
 
@@ -61,5 +88,3 @@ playRound(humanSelection, computerSelection);
 
 
 
-console.log(humanSelection, computerSelection);
-console.log(humanScore, computerScore);
