@@ -1,3 +1,6 @@
+let score = document.querySelector(".score");
+let para = document.querySelector(".p");
+
 let humanScore = 0;
 let computerScore = 0;
 
@@ -21,46 +24,45 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice === "scissors" && computerChoice === "paper") ||
     (humanChoice === "paper" && computerChoice === "rock")
   ) {
-    console.log(`You win as ${humanChoice} beats ${computerChoice}`);
     humanScore++;
     console.log(
-      `User score - ${humanScore}, Computer score - ${computerScore}`
+      `You won the round! Your score - ${humanScore}, Computer score - ${computerScore}.`
     );
   } else if (
     (humanChoice === "scissors" && computerChoice === "rock") ||
     (humanChoice === "paper" && computerChoice === "scissors") ||
     (humanChoice === "rock" && computerChoice === "paper")
   ) {
-    console.log(`You lose as ${computerChoice} beats ${humanChoice}`);
     computerScore++;
     console.log(
-      `User score - ${humanScore}, Computer score - ${computerScore}`
+      `You lost the round. Your score - ${humanScore}, Computer score - ${computerScore}.`
     );
   } else if (humanChoice === computerChoice) {
-    console.log("Draw! No points");
     console.log(
-      `User score - ${humanScore}, Computer score - ${computerScore}`
+      `Draw! No points. Your score - ${humanScore}, Computer score - ${computerScore}.`
     );
   } else {
-    console.log("No points");
     console.log(
-      `User score - ${humanScore}, Computer score - ${computerScore}`
+      `No points.  Your score - ${humanScore}, Computer score - ${computerScore}.`
     );
   }
 }
 
-for (let i = 1; i >= 0; i++) {
-  playRound(getHumanChoice(), getComputerChoice());
+btnStart = document.querySelector(".start");
+btnStart.addEventListener("click", playGame);
 
-  if (humanScore === 5 || computerScore === 5) {
-    if (humanScore > computerScore && humanScore === 5) {
-      console.log(`Yayy! You won the game with ${humanScore}-${computerScore}`);
+function playGame() {
+  for (let i = 1; i >= 0; i++) {
+    playRound(getHumanChoice(), getComputerChoice());
+
+    if (humanScore === 5 || computerScore === 5) {
+      if (humanScore > computerScore && humanScore === 5) {
+        score.textContent = `Yayy! You won the game by ${humanScore}-${computerScore}`;
+      }
+      if (computerScore > humanScore && computerScore === 5) {
+        score.textContent = `Oops! You lost the game by ${humanScore}-${computerScore}. Better luck next time!`;
+      }
+      break;
     }
-    if (computerScore > humanScore && computerScore === 5) {
-      console.log(
-        `Oops! You lost with the score of ${humanScore}-${computerScore}. Better luck next time!`
-      );
-    }
-    break;
   }
-} /* I did it!!!! I made the game by my own!!!!! WITHOUT ANY HELP OR CHEATING!!! */
+}
